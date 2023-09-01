@@ -1,0 +1,181 @@
+<nav class="navbar navbar-expand-lg navbar-light coustom-navbar" style="padding:0%">
+    <div class="container-fluid mx-3">
+        <a class="navbar-brand" href="#">
+            <!-- <embed src="../../assets/images/098909890.svg"> -->
+
+                <!-- <img src="" alt="" width="200" height="100"> -->
+                Note Taking App
+        </a>
+        <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            
+            
+            
+            <!-- <button type="button" class="btn btn-outline-danger ms-0 ms-lg-2 p-1" routerLink="/driver-register">Register as
+                Driver</button> -->
+                 <div *ngIf="!isloggedIn">
+            <button type="button"  class="btn btn-outline-success mx-2 p-1" data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
+            <button type="button"  class="btn btn-outline-success mx-2 p-1"  data-bs-toggle="modal" data-bs-target="#SignupModal">Sign Up</button>
+                </div>
+               <div *ngIf="isloggedIn">
+                    <button type="button"  class="btn btn-outline-success mx-2 p-1" (click)="logout()">Logout</button>
+                </div>  
+        </div>
+    </div>
+</nav>
+<div class="modal fade" #signupModal id="SignupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Register</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="label-input">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              [(ngModel)]="user.username"
+              class="form-control"
+              name="username"
+              #username="ngModel"
+              required
+              [minlength]="5"
+              [maxlength]="20"
+              (ngModelChange)="validateUsername()"
+            />
+          
+            <!-- Display validation errors -->
+            <div *ngIf="username.invalid && usernameBlurred" class="text-danger">
+              <div *ngIf="username.errors?.['required']">
+                Username is required.
+              </div>
+              <div *ngIf="username.errors?.['minlength']">
+                Username must be at least 5 characters long.
+              </div>
+              <div *ngIf="username.errors?.['maxlength']">
+                Username cannot exceed 20 characters.
+              </div>
+            </div>
+          </div>
+          
+              <!-- <div class="label-input"> 
+              <label>Email:</label>
+              <input type="email" [(ngModel)]="user.email" class="form-control" required email/>
+              </div> -->
+              <div class="label-input"> 
+              <label>Password:</label>
+              <input type="password" [(ngModel)]="user.password" class="form-control"
+              name="password"
+              #password="ngModel"
+              required
+              [minlength]="8"
+              [maxlength]="20"
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?!.*\s).{8,}$"
+              (ngModelChange)="validatePass()"/>
+               <!-- Display validation errors -->
+            <div *ngIf="password.invalid && passwordBlurred" class="text-danger">
+              <div *ngIf="password.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                Password must be at least 8 characters long.
+              </div>
+              <div *ngIf="password.errors?.['maxlength']">
+                Password cannot exceed 20 characters.
+              </div>
+              <div *ngIf="password.errors?.['pattern']">
+                Password must include atleast 1 special character<br>
+                1 Capital letter and 1 number
+              </div>
+            </div>
+              </div>
+              <div class="label-input"> 
+              <label>Confirm Password:</label>
+              <input type="password" [(ngModel)]="cpass" class="form-control"/>
+              <div class="text-danger" style="font-size: 10px;">
+                  Make sure Password and Confirm Password matches.
+              </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validatefields()" (click)="signup()">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal fade" #loginModal id="LoginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title" id="exampleModalLabel">Log In</p>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="label-input">
+            <label for="username">Username:</label>
+            <input
+              type="text"
+              [(ngModel)]="user.username"
+              class="form-control"
+              name="username"
+              #username="ngModel"
+              required
+              [minlength]="5"
+              [maxlength]="20"
+              (ngModelChange)="validateUsername()"
+            />
+          
+            <!-- Display validation errors -->
+            <div *ngIf="username.invalid && usernameBlurred" class="text-danger">
+              <div *ngIf="username.errors?.['required']">
+                Username is required.
+              </div>
+              <div *ngIf="username.errors?.['minlength']">
+                Username must be at least 5 characters long.
+              </div>
+              <div *ngIf="username.errors?.['maxlength']">
+                Username cannot exceed 20 characters.
+              </div>
+            </div>
+          </div>
+          <div class="label-input"> 
+            <label>Password:</label>
+            <input type="password" [(ngModel)]="user.password" class="form-control"
+            name="password"
+            #password="ngModel"
+            required
+            [minlength]="8"
+            [maxlength]="20"
+            pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?!.*\s).{8,}$"
+            (ngModelChange)="validatePass()"/>
+             <!-- Display validation errors -->
+          <div *ngIf="password.invalid && passwordBlurred" class="text-danger">
+            <div *ngIf="password.errors?.['required']">
+              Password is required.
+            </div>
+            <div *ngIf="password.errors?.['minlength']">
+              Password must be at least 8 characters long.
+            </div>
+            <div *ngIf="password.errors?.['maxlength']">
+              Password cannot exceed 20 characters.
+            </div>
+            <div *ngIf="password.errors?.['pattern']">
+              Password must include atleast 1 special character<br>
+              1 Capital letter and 1 number
+            </div>
+          </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" [disabled]="!validateFieldsLogin()" (click)="login()">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>

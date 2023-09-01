@@ -1,0 +1,30 @@
+.topbar p{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 500;
+}
+.topbar button{
+   margin-bottom: 5%;
+}
+.notesData{
+    display: flex;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 2.5%;
+}
+.notesTitle{
+    font-size: 25px;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    /* width: 50%; */
+}
+.notebutton{
+    border: none;
+    background-color: transparent;
+}
+.modal-title{
+    font-size: 20px;
+    margin: 0px;
+}

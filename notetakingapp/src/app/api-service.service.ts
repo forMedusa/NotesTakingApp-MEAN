@@ -16,18 +16,6 @@ export class ApiServiceService {
 
   putNoteUrl = 'http://localhost:4000/notes/';
 
-  username:any;
-
-  setUsername(name: string) {
-    console.log(name)
-    this.username = name;
-  }
-
-  getUsername() {
-    console.log(this.username)
-    return this.username;
-  }
-
   postUsers(data:any):Observable<any> {
     console.log(data);
     return this.http.post(this.postuserUrl,data);

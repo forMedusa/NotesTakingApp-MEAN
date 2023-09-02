@@ -73,7 +73,6 @@ export class NavbarComponent implements OnInit  {
         alert("Ivalid details")
       } else {
     console.log('Result', res);
-    this.service.setUsername(this.user.username);
     console.log(this.user.username)
     this.cookies.set('loggedin', 'true');
     this.cookies.set('username', this.user.username);

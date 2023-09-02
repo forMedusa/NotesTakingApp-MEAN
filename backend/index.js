@@ -8,12 +8,13 @@ app.use(express.json());
 app.use(bodyparser.json());
 const userName = encodeURIComponent("Xyzsor");
 const pass = encodeURIComponent("Smackthat@369");
-const corsOptions = {
-  origin: 'https://main--venerable-dodol-d18016.netlify.app',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-};
-
-app.use(cors(corsOptions));
+app.use(function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+})
+app.use(cors());
+const port = process.env.PORT || 4000;
 
 const url = `mongodb+srv://${userName}:${pass}@cluster0.dm362or.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
@@ -24,7 +25,7 @@ mongoose.connection.once('open', () =>
     ).on('error', (error) => {
         console.log("Connection Error!", error)
     })
-app.listen(4000,()=>{
+app.listen(port,()=>{
     console.log(`Server running !`)
 })
 

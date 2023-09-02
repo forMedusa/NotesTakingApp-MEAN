@@ -7,8 +7,8 @@ const app= express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyparser.json());
-const userName = encodeURIComponent("Xyzsor");
-const pass = encodeURIComponent("Smackthat@369");
+const userName = encodeURIComponent("amaan5054");
+const pass = encodeURIComponent("5ncbX1V33FscpOIW");
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
 const port = process.env.PORT || 4000;
 
-const url = `mongodb+srv://${userName}:${pass}@cluster0.dm362or.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${userName}:${pass}@cluster0.jjfk95z.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
 client.connect();
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }); // Add options

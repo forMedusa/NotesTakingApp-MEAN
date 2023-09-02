@@ -8,13 +8,13 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  postuserUrl = 'http://localhost:4000/users';
+  postuserUrl = 'https://notes-taking-app-mean.vercel.app/users';
 
-  postnotesUrl = 'http://localhost:4000/notes';
+  postnotesUrl = 'https://notes-taking-app-mean.vercel.app/notes';
 
-  getUserPostsUrl = 'http://localhost:4000/users/';
+  getUserPostsUrl = 'https://notes-taking-app-mean.vercel.app/users/';
 
-  putNoteUrl = 'http://localhost:4000/notes/';
+  putNoteUrl = 'https://notes-taking-app-mean.vercel.app/notes/';
 
   postUsers(data:any):Observable<any> {
     console.log(data);

@@ -8,8 +8,12 @@ app.use(express.json());
 app.use(bodyparser.json());
 const userName = encodeURIComponent("Xyzsor");
 const pass = encodeURIComponent("Smackthat@369");
-const frontendURL = 'https://main--venerable-dodol-d18016.netlify.app/';
-app.use(cors({ origin: frontendURL }));
+const corsOptions = {
+  origin: 'https://main--venerable-dodol-d18016.netlify.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+};
+
+app.use(cors(corsOptions));
 
 const url = `mongodb+srv://${userName}:${pass}@cluster0.dm362or.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(url);

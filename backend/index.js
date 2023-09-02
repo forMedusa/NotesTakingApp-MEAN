@@ -5,15 +5,17 @@ const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose');
 const app= express();
 app.use(express.json());
+app.use(cors());
 app.use(bodyparser.json());
 const userName = encodeURIComponent("Xyzsor");
 const pass = encodeURIComponent("Smackthat@369");
 app.use(function(req,res,next){
-  res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Origin: https://main--venerable-dodol-d18016.netlify.app');
+  res.header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
   next();
 })
-app.use(cors());
+
 const port = process.env.PORT || 4000;
 
 const url = `mongodb+srv://${userName}:${pass}@cluster0.dm362or.mongodb.net/?retryWrites=true&w=majority`;

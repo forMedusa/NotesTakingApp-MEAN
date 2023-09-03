@@ -5,25 +5,21 @@ const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose');
 const app= express();
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://main--venerable-dodol-d18016.netlify.app",
-  })
-);
+app.use(cors());
 app.use(bodyparser.json());
 const userName = encodeURIComponent("amaan5054");
 const pass = encodeURIComponent("5ncbX1V33FscpOIW");
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
-//   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
+  next();
+});
 
 const port = process.env.PORT || 4000;
 
-const url = `mongodb+srv://${userName}:${pass}@cluster0.jjfk95z.mongodb.net/?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${userName}:${pass}@cluster0.jjfk95z.mongodb.net/notetakingapp?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
 client.connect();
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }); // Add options
@@ -53,10 +49,10 @@ app.listen(port,()=>{
 
   //USER POST API
 app.post('/users', async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, password } = req.body;
 
   try {
-    // Check if a user with the same email already exists
+    // Check if a user with the same username already exists
     const existingUser = await user.findOne({ username });
 
     if (existingUser) {
@@ -67,7 +63,7 @@ app.post('/users', async (req, res) => {
     // Create a new user with the hashed password
     const newUser = new user({
       username,
-      password,
+      password
     });
 
     // Save the new user
@@ -90,7 +86,6 @@ app.post('/users', async (req, res) => {
     const body = req.body.body;
   
     try {
-      // Find the user by username (you should have a 'User' model)
       const users = await user.findOne({ username });
   
       if (!users) {
@@ -101,7 +96,7 @@ app.post('/users', async (req, res) => {
       const newNote = new notes({
         title,
         body,
-        username: users.username, // Associate the note with the user
+        username: users.username, 
       });
   
       // Save the new note

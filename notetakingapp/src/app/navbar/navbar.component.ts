@@ -34,7 +34,6 @@ export class NavbarComponent implements OnInit  {
   });
   user={
     username: '',
-    email: '',
     password: ''
   }
   cpass:any
@@ -114,7 +113,6 @@ export class NavbarComponent implements OnInit  {
     this.cookies.delete('loggedin');
     this.cookies.delete('username');
     this.isloggedIn = false;
-    this.user.email = '';
     this.user.password = '';
     this.user.username = '';
     this.router.navigateByUrl('/');

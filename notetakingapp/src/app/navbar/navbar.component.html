@@ -1,9 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light coustom-navbar" style="padding:0%;">
     <div class="container-fluid mx-3" style="margin-top: 5px;">
         <a class="navbar-brand" href="#">
-            <!-- <embed src="../../assets/images/098909890.svg"> -->
-
-                <!-- <img src="" alt="" width="200" height="100"> -->
                 Note Taking App
         </a>
         <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,10 +8,6 @@
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             
-            
-            
-            <!-- <button type="button" class="btn btn-outline-danger ms-0 ms-lg-2 p-1" routerLink="/driver-register">Register as
-                Driver</button> -->
                  <div *ngIf="!isloggedIn">
             <button type="button"  class="btn btn-outline-success mx-2 p-1" data-bs-toggle="modal" data-bs-target="#LoginModal">Login</button>
             <button type="button"  class="btn btn-outline-success mx-2 p-1"  data-bs-toggle="modal" data-bs-target="#SignupModal">Sign Up</button>
@@ -60,11 +53,6 @@
               </div>
             </div>
           </div>
-          
-              <!-- <div class="label-input"> 
-              <label>Email:</label>
-              <input type="email" [(ngModel)]="user.email" class="form-control" required email/>
-              </div> -->
               <div class="label-input"> 
               <label>Password:</label>
               <input type="password" [(ngModel)]="user.password" class="form-control"

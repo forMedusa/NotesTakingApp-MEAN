@@ -5,17 +5,21 @@ const {MongoClient} = require('mongodb');
 const mongoose = require('mongoose');
 const app= express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://main--venerable-dodol-d18016.netlify.app",
+  })
+);
 app.use(bodyparser.json());
 const userName = encodeURIComponent("amaan5054");
 const pass = encodeURIComponent("5ncbX1V33FscpOIW");
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
+//   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
+//   next();
+// });
 
 const port = process.env.PORT || 4000;
 

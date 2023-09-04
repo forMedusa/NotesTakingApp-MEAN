@@ -8,13 +8,22 @@ export class ApiServiceService {
 
   constructor(private http: HttpClient) { }
 
-  postuserUrl = 'http://54.252.28.242:4000/users';
+  // ON LOCAL PLEASE USE LOCALHOST  LINKS AND COMMENT THE OTHER
+  // postuserUrl = 'http://localhost:443/users';
 
-  postnotesUrl = 'http://54.252.28.242:4000/notes';
+  // postnotesUrl = 'http://localhost:443/notes';
 
-  getUserPostsUrl = 'http://54.252.28.242:4000/users/';
+  // getUserPostsUrl = 'http://localhost:443/users/';
 
-  putNoteUrl = 'http://54.252.28.242:4000/notes/';
+  // putNoteUrl = 'http://localhost:443/notes/';
+
+  postuserUrl = 'http://54.252.28.242:443/users';
+
+  postnotesUrl = 'http://54.252.28.242:443/notes';
+
+  getUserPostsUrl = 'http://54.252.28.242:443/users/';
+
+  putNoteUrl = 'http://54.252.28.242:443/notes/';
 
   postUsers(data:any):Observable<any> {
     console.log(data);

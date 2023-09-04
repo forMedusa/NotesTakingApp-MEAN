@@ -11,13 +11,13 @@ const userName = encodeURIComponent("amaan5054");
 const pass = encodeURIComponent("5ncbX1V33FscpOIW");
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://main--venerable-dodol-d18016.netlify.app');
+  res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept');
   next();
 });
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 443;
 
 const url = `mongodb+srv://${userName}:${pass}@cluster0.jjfk95z.mongodb.net/notetakingapp?retryWrites=true&w=majority`;
 const client = new MongoClient(url);
@@ -29,7 +29,7 @@ mongoose.connection.once('open', () =>
         console.log("Connection Error!", error)
     })
 app.listen(port,()=>{
-    console.log(`Server running !`)
+    console.log(`Server running ${port} !`)
 })
 
   const userSchema = new mongoose.Schema({

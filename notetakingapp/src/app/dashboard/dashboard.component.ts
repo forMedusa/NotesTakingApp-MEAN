@@ -29,6 +29,12 @@ export class DashboardComponent implements OnInit {
     title:'',
     body:''
   }
+  updatedNotes={
+    _id:'',
+    title:'',
+    body:''
+  };
+  
   tempNotes={
     title:'',
     body:''
@@ -42,11 +48,11 @@ export class DashboardComponent implements OnInit {
   return false;
   }
 
-  updateNote(){
-    if(this.notes.title.length >= 8 && this.notes.body.length >= 20){
-      return true;
+  updateNoteAdd(){
+    if(this.editNotes.title == this.updatedNotes.title && this.editNotes.body == this.updatedNotes.body){
+      return false;
     }
-    return false;
+    return true;
   }
 
   postNote(){
@@ -69,11 +75,15 @@ export class DashboardComponent implements OnInit {
   }
 
   getEditData(id:string,title:string,body:string,index:number){
-   // console.log(this.notesData[index])
+   //console.log(this.notesData[index])
+   this.updatedNotes.title = this.notesData[index].title;
+   this.updatedNotes.body = this.notesData[index].body;
+   this.updatedNotes._id = this.notesData[index]._id;
     this.editNotes._id = id;
     this.editNotes.title = title;
     this.editNotes.body = body;
     console.log(this.editNotes)
+    console.log(this.updatedNotes)
   }
 
   updateNotes(){

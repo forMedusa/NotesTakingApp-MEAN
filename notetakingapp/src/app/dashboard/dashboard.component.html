@@ -4,12 +4,36 @@
         <p>Your Notes</p> 
         <button class="addNotesButton btn btn-primary" data-bs-toggle="modal" data-bs-target="#AddNotesModal">Add Notes</button>
     </div>
-    <div class="notesData" *ngFor="let noteData of notesData; let i = index">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item" *ngFor="let noteData of notesData; let i = index" style="margin-bottom: 5%;">
+        <h2 class="accordion-header" [id]="'heading' + i">
+        
+          <button class="accordion-button" type="button" [attr.data-bs-toggle]="'collapse'" [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+            <div style="width: 16%;">{{noteData.title}}</div>
+            <div style="width: 80%; text-align: right;">
+            <button class="notebutton" (click)="getEditData(noteData._id, noteData.title, noteData.body, i)">
+              <mat-icon [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#EditModal'">edit</mat-icon>
+            </button>
+            <button class="notebutton">
+              <mat-icon [attr.data-bs-toggle]="'modal'" [attr.data-bs-target]="'#DeleteModal'" (click)="getEditData(noteData._id, noteData.title, noteData.body, i)">delete</mat-icon>
+            </button>
+            <button class="notebutton"><mat-icon>share</mat-icon></button></div>
+          </button>
+        </h2>
+        <div [id]="'collapse' + i" class="accordion-collapse collapse show" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>{{noteData.body}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- <div class="notesData" *ngFor="let noteData of notesData; let i = index">
       <p class="notesTitle">{{noteData.title}}</p>
         <button class="notebutton" (click)="getEditData(noteData._id,noteData.title,noteData.body,i)"><mat-icon data-bs-toggle="modal" data-bs-target="#EditModal">edit</mat-icon></button>
         <button class="notebutton"><mat-icon data-bs-toggle="modal" data-bs-target="#DeleteModal" (click)="getEditData(noteData._id,noteData.title,noteData.body,i)">delete</mat-icon></button>
         <button class="notebutton"><mat-icon>share</mat-icon></button>
-      </div>
+      </div> -->
 </div>
 
 <!-- Modal for Add notes-->
@@ -110,11 +134,14 @@
               Note Body must be at least 40 characters long.
             </div>
             </div>
+            <div *ngIf="!updateNoteAdd()" class="text-danger">
+              Nothing to update
+            </div>
           </div>
     </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" [disabled]="!updateNote()" (click)="updateNotes()">Update</button>
+          <button type="button" class="btn btn-primary" [disabled]="!updateNoteAdd()" (click)="updateNotes()">Update</button>
         </div>
       </div>
     </div>

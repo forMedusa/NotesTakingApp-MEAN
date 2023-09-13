@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     body:''
   }
   notesData:any;
-
+  
   postNoteAdd(){
     if(this.notes.title.length >= 8 && this.notes.body.length >= 20){
     return true;

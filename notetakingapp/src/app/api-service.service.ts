@@ -17,13 +17,13 @@ export class ApiServiceService {
 
   // putNoteUrl = 'http://localhost:443/notes/';
 
-  postuserUrl = 'https://nodejs-6421992637235128.kloudbeansite.com/users';
+  postuserUrl = 'https://nodejs-6421992647235128.kloudbeansite.com/users';
 
-  postnotesUrl = 'https://nodejs-6421992637235128.kloudbeansite.com/notes';
+  postnotesUrl = 'https://nodejs-6421992647235128.kloudbeansite.com';
 
-  getUserPostsUrl = 'https://nodejs-6421992637235128.kloudbeansite.com/users/';
+  getUserPostsUrl = 'https://nodejs-6421992647235128.kloudbeansite.com/users/';
 
-  putNoteUrl = 'https://nodejs-6421992637235128.kloudbeansite.com/notes/';
+  putNoteUrl = 'https://nodejs-6421992647235128.kloudbeansite.com/notes/';
 
   postUsers(data:any):Observable<any> {
     console.log(data);
